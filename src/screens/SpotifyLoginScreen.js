@@ -5,6 +5,8 @@ import InAppBrowser from 'react-native-inappbrowser-reborn';
 
 export default class SpotifyLoginScreen extends React.Component {
   async onLogin() {
+    // Just created a backend using node js for handling authentication for spotify using passport js
+    //it will take just some seconds to redirect because i am using free version of heroku
     const url = `https://quiet-harbor-68498.herokuapp.com/auth/spotify`;
     try {
       if (await InAppBrowser.isAvailable()) {
@@ -17,6 +19,11 @@ export default class SpotifyLoginScreen extends React.Component {
           enableDefaultShare: false,
         }).then(async (response) => {
           if (response.type === 'success' && response.url) {
+
+            //read the params from the redirection url
+
+            //redirection url is a deep link to the app called spotifyapp://Detail?accessToken=637ASas7sd7&profile=....
+            //so i am reading the access token to store it in my cache
             var regex = /[?&]([^=#]+)=([^&#]*)/g,
               params = {},
               match;

@@ -20,6 +20,8 @@ const ArtistSearchScreen = () => {
   const [searchRes, setSearchRes] = useState([]);
   const [albums, setAlbums] = useState([]);
 
+
+  // api for searching an artist
   const searchArtist = async () => {
     setSearchRes([]);
     setAlbums([]);
@@ -39,6 +41,7 @@ const ArtistSearchScreen = () => {
       });
   };
 
+  // api for getting artist albums when clicking on an artist
   const getArtistAlbums = async (artist) => {
     setAlbums([]);
     let token = await AsyncStorage.getItem('accessToken');
